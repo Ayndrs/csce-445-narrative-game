@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script src="loading.js"></script>
+    <script src="dialogue.js"></script>
+    <!-- You can add your own favicon and fonts by swapping out these links -->
+    <link rel="icon" type="image/png" href="./favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>The Lost Artifact</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <main>
+      <div id="loading">
+        <!-- You can change what shows up on the loading page, I just used a css animation so there's no images to load -->
+        <div class="loading-dots"></div>
+      </div>
+      <!-- All these game stages start out hidden. That class gets added or removed as you progress -->
+      <div id="titlescreen" class="hidden">
+        <div class="wrapper">
+          <!-- This wrapper class is totally optional, I'm just using it for styling -->
+          <h1>THE LOST ARTIFACT</h1>
+          <p>
+            by
+            <a target="_blank" 
+              >Team AMAR</a
+            >
+          </p>
+          <div class="dragon"></div>
+          <audio id="background-music" loop autoplay>
+            <source src="sounds/dragon-breathes-fire-3-191459.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <button onclick="startGame()">start</button>
+        </div>
+      </div>
+      <div id="dialogue-container" class="hidden">
+        <div class="lives">
+          <p>Lives: <p id="livesCount">3</p></p>
+        </div>
+        <script>
+          // Initial lives count
+          let lives = 3; // Change this value as per your requirement
+        
+          // Function to update lives count
+          function updateLivesCount() {
+            lives--;
+            updateHeartIcons();
+           // document.getElementById("livesCount").innerText = lives;
+            console.log(lives)
+            return lives;
+          }
+
+          function getLives(){
+            return lives;
+          }
+
+          function resetLives(){
+            lives = 3;
+            updateHeartIcons();
+           // document.getElementById("livesCount").innerText = lives;
+          }
+          function updateHeartIcons() {
+            const livesContainer = document.getElementById("livesCount");
+            livesContainer.innerHTML = ""; // Clear previous content
+
+            // Add heart icons based on current lives count
+            for (let i = 0; i < lives; i++) {
+                const heartIcon = document.createElement("img");
+                heartIcon.src = "characters/heart.png"; // Path to your heart image
+                heartIcon.alt = "Heart";
+                livesContainer.appendChild(heartIcon);
+            }
+            
+        }
+        resetLives()
+        </script>
+        <div class="dialogue-main">
+          <div id="character-portrait"></div>
+          <div class="dialogue-responses-wrapper" id="responses">
+            <!-- This is where the dialogue response options will get populated -->
+          </div>
+          <div class="dialogue-wrapper">
+            <!-- This is where the character name and dialogue will get populated on the bottom of the screen  -->
+            <div id="speaker-name"></div>
+            <div class="text">
+              <p id="character-dialogue"></p>
+              <button id="progress-dialogue" class="hidden" aria-label="next">
+                <div></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="epilogue" class="hidden">
+        <p id="epilogue-result"></p>
+        <button onclick="restart()">You Win, Play Again?</button>
+      </div>
+
+      <div id="epilogue2" class="hidden">
+        <p id="epilogue-result2"></p>
+        <button onclick="restart()">You Lose, Play Again?</button>
+      </div>
+    </main>
+  </body>
+</html>
