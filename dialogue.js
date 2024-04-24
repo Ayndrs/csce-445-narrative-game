@@ -288,7 +288,7 @@ const DIALOGUE_CONTENT = [
   },
   {
     id: 20,
-    text: "Navigating through winding corridors, our adventurer arrives at the Chamber of Echoes, a vast chamber where every sound reverberates endlessly. At the center of the chamber stands a stone altar, engraved with ancient runes.",
+    text: "Lost within the Maze of Illusions, our adventurer encounters twisting passages lined with shimmering illusions that warp reality. At the heart of the maze lies a cryptic inscription etched into the stone walls.",
     speakerName: "Narrator",
     characterImg: NARRATOR,
     next: 21,
